@@ -34,4 +34,19 @@ I was able to resolve the error by closing command prompt, and opening it again.
 
 **Note to insert Image - Proof of Working AWS CLI**
 
+### Create a Billing Alarm
+
+### Create a Budget
+
+I created my own Budget for $10 because I cannot affor any kind of spend.
+I did not create a second Budget because I was concerned of budget spending going over the 2 budget free limit.
+
+![Image of The Budget Alarm I Created](assets/Budgeting%20Alarm.png)
+
+### Recreate Logical Architectural Design
+
+![Cruddur Logical Design](assets/Logical-Architecture-recreation-diagram.png)
+
+[Lucid Charts Share Link](https://lucid.app/lucidchart/aec6d9f5-e6a3-42a2-8aaf-cb6a76a0fc63/edit?viewport_loc=-114%2C93%2C1707%2C753%2C0_0&invitationId=inv_85db70eb-26ed-45e7-91f2-634df1312b23)
+
 ## Homework Challenges
