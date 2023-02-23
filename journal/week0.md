@@ -50,3 +50,10 @@ I did not create a second Budget because I was concerned of budget spending goin
 [Lucid Charts Share Link](https://lucid.app/lucidchart/aec6d9f5-e6a3-42a2-8aaf-cb6a76a0fc63/edit?viewport_loc=-114%2C93%2C1707%2C753%2C0_0&invitationId=inv_85db70eb-26ed-45e7-91f2-634df1312b23)
 
 ## Homework Challenges
+
+### Adding Security Components to the Logical Diagram
+
+### Realtime Websockets
+
+## References
+
