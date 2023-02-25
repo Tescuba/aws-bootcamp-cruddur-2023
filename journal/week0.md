@@ -32,7 +32,7 @@ operable program or batch file.
 
 I was able to resolve the error by closing command prompt, and opening it again.
 
-![Proof of of Working AWS CLI]()
+![Proof of of Working AWS CLI](assets/Proof%20of%20working%20aWS%20CLI.png)
 
 ### Create a Billing Alarm
 
