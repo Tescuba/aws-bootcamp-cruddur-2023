@@ -44,4 +44,43 @@ EXPOSE ${PORT}
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
 
 ```
+| docker container run is idiomatic, docker run is legacy syntax but is commonly used.
+
+## Get Container Images or Running Container Ids
+
+```
+docker ps
+docker images
+
+```
+## Send Curl to Test Server
+
+```
+curl -X GET http://localhost:4567/api/activities/home -H "Accept: application/json" -H "Content-Type: application/json"
+
+```
+
+## Check Container Logs
+
+```
+docker logs CONTAINER_ID -f
+docker logs backend-flask -f
+docker logs $CONTAINER_ID -f
+
+```
+
+## Debugging adjacent containers with other containers
+
+```
+docker run --rm -it curlimages/curl "-X GET http://localhost:4567/api/activities/home -H \"Accept: application/json\" -H \"Content-Type: application/json\""
+
+```
+
+busybosy is often used for debugging since it install a bunch of thing
+
+```
+docker run --rm -it busybosy
+
+```
+
 
