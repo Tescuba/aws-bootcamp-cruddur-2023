@@ -16,7 +16,7 @@ docker for VSCode makes it easy to work with Docker
 
 ## Run Python
 
-```
+```js
 cd backend-flask
 export FRONTEND_URL="*"
 export BACKEND_URL="*"
@@ -35,7 +35,7 @@ cd ..
 
 Create a file here: ``` bacend-flask/Dockerfile ```
 
-```
+```py
 FROM python:3.10-slim-buster
 
 WORKDIR /backend-flask
@@ -157,7 +157,7 @@ docker run -p 3000:3000 -d frontend-react-js
 
 Create ``` dlcker-compose.yml ``` at the root of your project
 
-```
+```py
 version: "3.8"
 services:
   backend-flask:
@@ -196,7 +196,7 @@ Lets integrate the following into our existing docker compose file:
 
 ## Postgres
 
-```
+```py
 services:
   db:
     image: postgres:13-alpine
@@ -216,7 +216,7 @@ volumes:
 
 To install the postgres client into Gitpod
 
-```
+```py
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -228,7 +228,7 @@ To install the postgres client into Gitpod
 
 ## DynamoDB Local
 
-```
+```py
 services:
   dynamodb-local:
     # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
