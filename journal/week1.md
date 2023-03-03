@@ -216,7 +216,7 @@ volumes:
 
 To install the postgres client into Gitpod
 
-```yaml
+```sh
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
