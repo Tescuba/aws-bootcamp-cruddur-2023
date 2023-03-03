@@ -2,13 +2,13 @@
 
 ## References
 
-Good article for Debugging Connection Refused [https://pythonspeed.com/articles/docker-connection-refused/]
+Good article for Debugging Connection Refused 
+https://pythonspeed.com/articles/docker-connection-refused/
 
 # VSCode Docker Extension
 
 docker for VSCode makes it easy to work with Docker
-
-[https://code.visualstudio.com/docs/containers/overview]
+https://code.visualstudio.com/docs/containers/overview
 
 | Gitpod is preinstalled withs this extension
 
@@ -196,7 +196,7 @@ Lets integrate the following into our existing docker compose file:
 
 ## Postgres
 
-```py
+```yaml
 services:
   db:
     image: postgres:13-alpine
@@ -216,7 +216,7 @@ volumes:
 
 To install the postgres client into Gitpod
 
-```py
+```yaml
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -245,7 +245,8 @@ services:
 
 ```
 
-Example of using DynamoDB local [https://github.com/100DaysOfCloud/challenge-dynamodb-local]
+Example of using DynamoDB local 
+https://github.com/100DaysOfCloud/challenge-dynamodb-local
 
 ## Volumes
 
