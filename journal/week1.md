@@ -33,7 +33,7 @@ cd ..
 
 ## Add Dockerfile
 
-Create a file here: ``` bacend-flask/Dockerfile ```
+Create a file here: ``` backend-flask/Dockerfile ```
 
 ```py
 FROM python:3.10-slim-buster
@@ -51,6 +51,30 @@ EXPOSE ${PORT}
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
 
 ```
+
+## Build Container
+
+```
+docker build -t  backend-flask ./backend-flask
+
+```
+
+## Run Container
+
+Run
+
+```
+docker run --rm -p 4567:4567 -it backend-flask
+FRONTEND_URL="*" BACKEND_URL="*" docker run --rm -p 4567:4567 -it backend-flask
+export FRONTEND_URL="*"
+export BACKEND_URL="*"
+docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+docker run --rm -p 4567:4567 -it  -e FRONTEND_URL -e BACKEND_URL backend-flask
+unset FRONTEND_URL="*"
+unset BACKEND_URL="*"
+
+```
+
 | docker container run is idiomatic, docker run is legacy syntax but is commonly used.
 
 ## Get Container Images or Running Container Ids
@@ -109,6 +133,15 @@ docker image rm backend-flask --force
 
 | There are some cases where you need to use the --force
 
+## Overriding Ports
+
+```
+FLASK_ENV=production PORT=8080 docker run -p 4567:4567 -it backend-flask
+
+```
+
+| Look at Dockerfile to see how ${PORT} is interpolated
+
 ## Containerize Frontend
 
 ## Run NPM Install
@@ -121,7 +154,7 @@ npm i
 
 ```
 
-## Create Docker File
+## To Create Docker File
 
 Create a file here: ``` frontend-react-js/Dockerfile ```
 
@@ -187,12 +220,11 @@ networks:
 
 ```
 
+# Adding DynamoDB Local and Postgres
 
-## Adding DynamoDB Local and Postgres
+I am going to use Postgres and DynamoDB local in Future labs I can bring them in as containers and reference them axternally
 
-We are going to use Postgres and DynamoDB local in Future labs We can bring them in as containers and reference them axternally
-
-Lets integrate the following into our existing docker compose file:
+Lets integrate the following into my existing docker compose file:
 
 ## Postgres
 
@@ -269,5 +301,63 @@ volumes:
     driver: local
 
 ```
+
+## Challenge Dynamodb Local
+
+Excersicing Dynamodb Local emulates a Dynamodb database in my local environment for rapid development and table design intration.
+
+### Run Docker Local
+
+```
+
+docker-compose up
+
+```
+
+### To Create a table
+
+```
+aws dynamodb create-table \
+    --endpoint-url http://localhost:8000 \
+    --table-name Music \
+    --attribute-definitions \
+        AttributeName=Artist,AttributeType=S \
+        AttributeName=SongTitle,AttributeType=S \
+    --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+    --table-class STANDARD
+
+```
+
+### To Create an Item in my Table
+
+```
+aws dynamodb put-item \
+    --endpoint-url http://localhost:8000 \
+    --table-name Music \
+    --item \
+        '{"Artist": {"S": "No One You Know"}, "SongTitle": {"S": "Call Me Today"}, "AlbumTitle": {"S": "Somewhat Famous"}}' \
+    --return-consumed-capacity TOTAL  
+
+```
+
+### To List Tables
+
+```
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+```
+
+### To Get Records
+
+```
+aws dynamodb scan --table-name cruddur_cruds --query "Items" --endpoint-url http://localhost:8000
+
+```
+
+### References
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html
 
 
