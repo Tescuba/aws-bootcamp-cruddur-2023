@@ -128,7 +128,7 @@ We need to trun on Billing Alerts to recieve alerts....
 
 * We need an SNS topic before we create an alarm.
 * The SNS topic is what will delivery us an alert when we get overbilled
-* aws sns crfeate-topic
+* aws sns create-topic
 
 We will create a SNS Topic
 
