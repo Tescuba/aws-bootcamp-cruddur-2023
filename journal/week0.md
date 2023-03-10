@@ -147,20 +147,49 @@ Check your email and confirm the subscription
 
 ### Create Alarm
 
+* aws cloudwatch put-metric-alarm
+* Create an Alarm via AWS CLI
+* We need to update the configuration json script whith the TopicARN we generated earlier
+* We are just a json file becuase --metrics is required for expressions and so its easier to us a JSON file.
+
+```
+aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm-config.json
+
+```
 
 
-
-### Create a Budget
+### To Create an AWS Budget
 
 I created my own Budget for $10 because I cannot affor any kind of spend.
 I did not create a second Budget because I was concerned of budget spending going over the 2 budget free limit.
 
+Get an AWS Account ID
+```
+aws sts get-caller-identity --query Account --output text
+
+```
+
+* Supply an AWS Account ID
+* Update the json files
+* this is another case with AWS CLI it's just much easier to json files due to lots of nested json
+
+```
+aws budgets create-budget \
+  --account-id AccountID \
+  --budget file://aws/json/budget.json \
+  --notifications-with-subscribers file://aws/json/budget-notifications-with-subscribers.json
+
+```
+
 ![Image of The Budget Alarm I Created](assets/Budgeting%20Alarm.png)
-## Homework Challenges
 
-### Adding Security Components to the Logical Diagram
 
-### Realtime Websockets
 
-## References
+### Homework Challenges .....
+
+### Adding Security Components to the Logical Diagram .......
+
+### Realtime Websockets ........
+
+### References .......
 
