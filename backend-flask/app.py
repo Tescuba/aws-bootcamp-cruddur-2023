@@ -54,10 +54,10 @@ processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 
 # X-RAY ------------------
-#xray_url = os.getenv("AWS_XRAY_URL")
-#xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 
-
+# OTEL -------------------
 # Show this in the logs within the backend-flask app (STDOUT)
 #simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
 #provider.add_span_processor(simple_processor)
@@ -86,6 +86,7 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 
+# CloudWatch Logs ---------
 #@app.after_request
 #def after_request(response):
 #    timestamp = strftime('[%Y-%b-%d %H:%M]')
