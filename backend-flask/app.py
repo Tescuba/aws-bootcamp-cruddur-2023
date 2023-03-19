@@ -4,7 +4,6 @@ from flask_cors import CORS, cross_origin
 import os
 
 from services.home_activities import *
-from services.notifications_activities import *
 from services.user_activities import *
 from services.create_activity import *
 from services.create_reply import *
@@ -68,12 +67,13 @@ tracer = trace.get_tracer(__name__)
 app = Flask(__name__)
 
 # X-RAY --------------
-#XRayMiddleware(app, xray_recorder)
+XRayMiddleware(app, xray_recorder)
 
 # HoneyComb ------------
 # Initialize automatic instrumentation with Flask
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
@@ -154,13 +154,13 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 @xray_recorder.capture('activities_home')
 def data_home():
-  data = HomeActivities.run(logger=LOGGER)
+  data = HomeActivities.run()
   return data, 200
 
-@app.route("/api/activities/notifications", methods=['GET'])
-def data_notifications():
-  data = NotificationsActivities.run()
-  return data, 200
+# @app.route("/api/activities/notifications", methods=['GET'])
+# def data_notifications():
+#   data = NotificationsActivities.run()
+#   return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
 @xray_recorder.capture('activities_users')
