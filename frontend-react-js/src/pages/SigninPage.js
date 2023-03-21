@@ -2,9 +2,9 @@ import './SigninPage.css';
 import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
-import { Auth } from 'aws-amplify';
 
 // [TODO] Authenication
+import { Auth } from 'aws-amplify';
 
 export default function SigninPage() {
 
@@ -21,7 +21,7 @@ export default function SigninPage() {
       localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
       window.location.href = "/"
     })
-    .catch(err => {
+    .catch(error => {
       if (error.code == 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }

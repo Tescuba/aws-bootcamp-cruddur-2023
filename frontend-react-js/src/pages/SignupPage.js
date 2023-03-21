@@ -17,7 +17,7 @@ export default function SignupPage() {
 
   const onsubmit = async (event) => {
     event.preventDefault();
-    setError('')
+    setErrors('')
     console.log('username',username)
     console.log('email',email)
     console.log('name',name)
@@ -38,7 +38,7 @@ export default function SignupPage() {
       window.location.href = `/confirm?email=${email}`
     } catch (error) {
         console.log(error);
-        setError(error.message)
+        setErrors(error.message)
     }
     return false
   }
