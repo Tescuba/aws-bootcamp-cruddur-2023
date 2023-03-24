@@ -5,6 +5,7 @@ import os
 import sys
 
 from services.home_activities import *
+from services.notifications_activities import *
 from services.user_activities import *
 from services.create_activity import *
 from services.create_reply import *
@@ -32,9 +33,9 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 # CloudWatch Logs ----------
 import watchtower
 import logging
-from time import strftime
 
 # Rollbar ----------------
+from time import strftime
 import os
 import rollbar
 import rollbar.contrib.flask
@@ -178,10 +179,10 @@ def data_home():
     data = HomeActivities.run()
   return data, 200
 
-# @app.route("/api/activities/notifications", methods=['GET'])
-# def data_notifications():
-#   data = NotificationsActivities.run()
-#   return data, 200
+@app.route("/api/activities/notifications", methods=['GET'])
+def data_notifications():
+  data = NotificationsActivities.run()
+  return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
 @xray_recorder.capture('activities_users')
