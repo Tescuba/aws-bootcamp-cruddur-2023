@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     try:
         print('entered-try')
         sql = f"""
-            "INSERT INTO users (
+            INSERT INTO public.users (
             display_name,
             email,
             handle,
@@ -25,7 +25,7 @@ def lambda_handler(event, context):
             '{user_email}',
             '{user_handle}',
             '{user_cognito_id}'
-            )"
+            )
         """
         print('SQL Statement ----')
         print(sql)
