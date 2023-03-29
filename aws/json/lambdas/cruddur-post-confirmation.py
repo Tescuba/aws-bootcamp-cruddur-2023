@@ -15,16 +15,16 @@ def lambda_handler(event, context):
         print('entered-try')
         sql = f"""
             INSERT INTO public.users (
-            display_name,
-            email,
-            handle,
-            cognito_user_id
-            )
+                display_name,
+                email,
+                handle,
+                cognito_user_id
+                )
             VALUES(
-            '{user_display_name}',
-            '{user_email}',
-            '{user_handle}',
-            '{user_cognito_id}'
+                '{user_display_name}',
+                '{user_email}',
+                '{user_handle}',
+                '{user_cognito_id}'
             )
         """
         print('SQL Statement ----')
