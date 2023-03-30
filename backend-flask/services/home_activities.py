@@ -13,8 +13,7 @@ class HomeActivities:
     #  span = trace.get_current_span()
     #  now = datetime.now(timezone.utc).astimezone()
     #  span.set_attribute("app.now", now.isoformat())
-
-      sql = query_wrap_array("""
+    result = db.query_array_json("""
       SELECT
         activities.uuid,
         users.display_name,
@@ -30,8 +29,4 @@ class HomeActivities:
       LEFT JOIN public.users ON users.uuid = activities.user_uuid
       ORDER BY activities.created_at DESC
       """)
-
-      print("-1------")
-      print(json[0])
-      return json[0]
       return results
