@@ -7,7 +7,6 @@ from lib.db import db
 
 class HomeActivities:
   def run(cognito_user_id=None):
-    #print("HOME ACTIVITY")
     #logger.info("HomeActivities")
     #with tracer.start_as_current_span("home-activities-mock-data"):
     #  span = trace.get_current_span()
