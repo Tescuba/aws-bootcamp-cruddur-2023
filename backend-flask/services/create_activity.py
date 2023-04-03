@@ -38,7 +38,7 @@ class CreateActivity:
 
     if model['errors']:
       model['data'] = {
-        'handle':  user_handle,
+        'handle': user_handle,
         'message': message
       }   
     else:
