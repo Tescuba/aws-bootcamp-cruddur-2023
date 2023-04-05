@@ -14,7 +14,6 @@ from lib.db import db
 attrs = {
   'endpoint_url': 'http://localhost:8000'
 }
-
 # unset endpoint url for use with production database
 if len(sys.argv) == 2:
   if "prod" in sys.argv[1]:
@@ -47,6 +46,7 @@ results = {
 print('get_user_uuids')
 print(results)
 return results
+
 def create_message_group(client,message_group_uuid, my_user_uuid, last_message_at=None, message=None, other_user_uuid=None, other_user_display_name=None, other_user_handle=None):
   table_name = 'cruddur-messages'
   record = {
@@ -66,23 +66,23 @@ def create_message_group(client,message_group_uuid, my_user_uuid, last_message_a
   print(response)
 
 def create_message(client,message_group_uuid, created_at, message, my_user_uuid, my_user_display_name, my_user_handle):
-record = {
-  'pk':   {'S': f"MSG#{message_group_uuid}"},
-  'sk':   {'S': created_at },
-  'message_uuid': { 'S': str(uuid.uuid4()) },
-  'message': {'S': message},
-  'user_uuid': {'S': my_user_uuid},
-  'user_display_name': {'S': my_user_display_name},
-  'user_handle': {'S': my_user_handle}
-}
+  table_name = 'cruddur-message'
+  record = {
+    'pk':   {'S': f"MSG#{message_group_uuid}"},
+    'sk':   {'S': created_at },
+    'message_uuid': { 'S': str(uuid.uuid4()) },
+    'message': {'S': message},
+    'user_uuid': {'S': my_user_uuid},
+    'user_display_name': {'S': my_user_display_name},
+    'user_handle': {'S': my_user_handle}
+  }
 # insert the record into the table
-table_name = 'cruddur-messages'
-response = client.put_item(
-  TableName=table_name,
-  Item=record
-)
-# print the response
-print(response)
+  response = client.put_item(
+    TableName=table_name,
+    Item=record
+  )
+  # print the response
+  print(response)
 
 message_group_uuid = "5ae290ed-55d1-47a0-bc6d-fe2bc2700399"
 now = datetime.now(timezone.utc).astimezone()
