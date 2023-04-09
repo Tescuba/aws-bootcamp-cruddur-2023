@@ -16,26 +16,27 @@ export default function ActivityForm(props) {
 
   const onsubmit = async (event) => {
     event.preventDefault();
-    try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages`
-      console.log('onsubmit payload', message)
-      const res = await fetch(backend_url, {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: message,
-          user_receiver_handle: params.handle
-        }),
-      });
-      let data = await res.json();
-      if (res.status === 200) {
-        props.setMessages(current => [...current,data]);
-      } else {
-        console.log(res)
-      }
+try {
+  const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages`
+  console.log('onsubmit payload', message)
+  const res = await fetch(backend_url, {
+    method: "POST",
+    headers: {
+      'Authorization': 'Bearer ${localStorage.getItem("access_token")}',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message: message,
+      user_receiver_handle: params.handle
+    }),
+  });
+  let data = await res.json();
+  if (res.status === 200) {
+    props.setMessages(current => [...current,data]);
+  } else {
+    console.log(res)
+  }
     } catch (err) {
       console.log(err);
     }

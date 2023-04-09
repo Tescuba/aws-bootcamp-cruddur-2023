@@ -22,8 +22,10 @@ tasks:
     command: |
       cd frontend-react-js
       npm i
-      cd ..
-      clear
+  - name: flask
+    command: |
+      cd backend-flask
+      pip install -r requirements.txt
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
