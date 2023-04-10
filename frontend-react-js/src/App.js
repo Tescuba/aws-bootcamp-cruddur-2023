@@ -10,7 +10,6 @@ import MessageGroupsPage from './pages/MessageGroupsPage';
 import MessageGroupPage from './pages/MessageGroupPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import React from 'react';
-import process from 'process';
 import {
   createBrowserRouter,
   RouterProvider
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
     element: <NotificationsFeedPage />
   },
   {
-    path: "/userfeedpage",
+    path: "/@:handle",
     element: <UserFeedPage />
   },
   {
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
     element: <MessageGroupsPage />
   },
   {
-    path: "/messages/@:handle",
+    path: "/messages/:message_group_uuid",
     element: <MessageGroupPage />
   },
   {
