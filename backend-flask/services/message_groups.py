@@ -4,10 +4,10 @@ from lib.db import db
 
 
 class MessageGroups:
-def run(cognito_user_id):
+  def run(cognito_user_id):
     model = {
-        'errors': None,
-        'data': None
+      'errors': None,
+      'data': None
     }
 
     sql = db.template('users', 'uuid_from_cognito_user_id')
