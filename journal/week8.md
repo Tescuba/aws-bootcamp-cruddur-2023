@@ -1,5 +1,4 @@
 # Week 8 — Serverless Image Processing
-# Week 8 — Serverless Image Processing
 
 ## New Directory
 
